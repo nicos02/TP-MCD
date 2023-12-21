@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<h4 class="text-center mt-5">Création d'un Article</h4>
+	<div class="form_container">
+		<form class="text-center mt-5 form" id="form_update" method="post" enctype="multipart/form-data">
+			<div class="form-group">
+				<label class="form-label" for="name">Titre</label>
+				<br>
+				<input type="text" name="name" id="name" required>
+			</div>
+			<div class="form-group w-25 mx-auto mt-3">
+				<label class="form-label mt-3" for="description">Description</label>
+				<textarea class="form-control" name="description" id="description" rows="3" required></textarea>
+			</div>
+
+			{# Afficher le message de succès #}
+			{% if message %}
+				<div class="success-message bg-success text-white mt-3 p-3">{{ message }}</div>
+				<script>
+					setTimeout(function () { // Redirection vers la page de détails d'un article
+window.location.href = '/public/category';
+}, 3000); // Temporisation de 3 secondes avant la redirection
+				</script>
+			{% endif %}
+			<div>
+				<button type="submit" class="btn btn-success mt-4">Créer</button>
+			</div>
+
+			<div class="mt-3">
+				<a href="/public/category">
+					<button type="button" class="btn btn-primary">Retour</button>
+				</a>
+			</div>
+		</form>
+
+	{% endblock %}

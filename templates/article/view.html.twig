@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	{% if session %}
+		<h2 class="mt-5 mb-5">Détails d'un article</h2>
+		<div class="list-group text-center">
+			<div class="list-group-item">
+				<h5 class="mb-4">#{{ article.id }}</h5>
+				<p class="mb-4"><strong>Titre:</strong> {{ article.title }}</p>
+				<p class="mb-1"><strong>Contenu:</strong></p>
+				<p class="mb-4">{{ article.content }}</p>
+				<img src="../../{{ article.img }}" width="100px" class="mb-4">
+				<p class="mb-4"><strong>État:</strong> {{ article.state == 1 ? "&#9989;" : "&#x274C;" }}</p>
+				<p class="mb-4"><strong>Date de création:</strong> {{ article.created_at }}</p>
+				<p class="mb-4"><strong>Mise à jour:</strong> {{ article.updatedAt }}</p>
+				{% if session.role == 'admin' %}
+					<a href="/public/article/modify/{{ article.id }}">
+						<button type="button" class="btn btn-success">Modifier</button>
+					</a>
+				{% endif %}
+			</div>
+		</div>
+
+		<div class="d-flex justify-content-center mt-5">
+			<a href="/public/article">
+				<button type="button" class="btn btn-primary">Retour</button>
+			</a>
+		</div>
+	{% else %}
+		<h3 class="text-center text-danger mt-5">Vous devez vous connecter ou vous inscrire pour voir cette page</h3>
+		<div class="d-flex justify-content-center mt-3">
+			<a href="/">
+				<button type="button" class="btn btn-primary">Retour</button>
+			</a>
+		</div>
+	{% endif %}
+{% endblock %}

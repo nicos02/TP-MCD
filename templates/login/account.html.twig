@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	{% if session %}
+		<h2 class="text-center mt-5">Bienvenue
+			{{username}}</h2>
+		<p class="text-center mt-5">Votre Email :
+			{{email}}
+		</p>
+		<div class="d-flex justify-content-center mt-5">
+			<a href="/public/logout" class="btn btn-danger">Déconnexion</a>
+		</div>
+	{% else %}
+		<p>Vous devez être connecté pour voir cette page.</p>
+	{% endif %}
+{% endblock %}

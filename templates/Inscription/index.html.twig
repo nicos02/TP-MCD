@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded w-50 mx-auto p-5">
+		<h2 class="text-center">Inscription <img src="assets/img/inscription.png" alt="inscription"></h2>
+	
+		<form method="POST" class="form text-center mt-5">
+			<div class="form-group mt-4">
+				<label for="username">Nom d'utilisateur <img src="assets/img/user.png" alt="user"></label>
+				<input type="text" class="form-control mx-auto mt-2" id="username" name="username" required>
+			</div>
+	
+			<div class="form-group mt-4">
+				<label for="email">Email <img class="p-1" src="assets/img/email.png" alt="email"></label>
+				<input type="text" class="form-control" id="email" name="email" required>
+			</div>
+			<div class="form-group mt-4">
+				<label for="password">Mot de passe <img class="p-1" src="assets/img/mdp.png" alt="mdp"></label>
+				<input type="password" class="form-control mx-auto mt-2" id="password" name="password" required>
+			</div>
+			{# Afficher le message de succès #}
+			{% if message %}
+				<div class="success-message bg-success text-white mt-3 p-3">{{ message }}</div>
+			{% endif %}
+			{% if message_error %}
+				<div class="bg-danger text-white mt-3 p-3">{{ message_error }}</div>
+			{% endif %}
+			<button type="submit" class="btn btn-primary mt-3">Inscription</button>
+		</form>
+</div>
+{% endblock %}

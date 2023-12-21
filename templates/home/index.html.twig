@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h2 class="text-center">Page Home</h2>
+	<h2 class="mt-5 mb-5 text-center text-success ">Articles Validé</h2>
+	<table class="table text-center">
+		<thead>
+			<tr>
+				<th>Titre</th>
+				<th>Image</th>
+				<th>Etat</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for article in articles_validate %}
+				<tr>
+					<td class="align-middle">{{ article.title }}</td>
+					<td class="align-middle"><img src="{{ article.img }}" width="100px"></td>
+					<td class="align-middle">{{ article.state == 1 ? "&#9989;" : "" }}</td>
+					<td class="align-middle">
+						<div>
+							<a href="/public/article/view/{{ article.id }}">
+								<button type="button" class="btn btn-primary">Consulter</button>
+							</a>
+						</div>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

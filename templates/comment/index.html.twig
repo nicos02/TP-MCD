@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h2 class="text-center mb-5">Les Commentaires</h2>
+	{% if session.role =='admin' %}
+		<div class="text-center mb-5">
+			<a href="/public/comment/create">
+				<button type="button" class="btn btn-primary mt-3">Créer</button>
+			</a>
+		</div>
+	{% endif %}
+	<table class="table w-50 mx-auto text-center">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Contenue</th>
+				<th>Article Lier</th>
+				<th>Etat</th>
+				<th>Date de création</th>
+				<th>Email</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for comment in allcomment %}
+				<tr>
+					<td class="align-middle">{{ comment.id }}</td>
+					<td class="align-middle">{{ comment.content|slice(0,50) ~ '...'   }}</td>
+					<td class="align-middle">{{ comment.title}}</td>
+					<td class="align-middle">{{ comment.state  == 1 ? "&#9989;" : "&#x274C;"}}</td>
+					<td class="align-middle">{{ comment.created_at}}</td>
+					<td class="align-middle">{{ comment.email|slice(0,5) ~ '...'  }}</td>
+						<td class="align-middle">
+					{% if session.role =='admin' %}
+							<div>
+								<a href="/public/comment/modify/{{ comment.id }}">
+									<button type="button" class="btn btn-primary mt-3">Modifier</button>
+								</a>
+							</div>
+						{% endif %}
+						<div>
+							<a href="/public/comment/delete/{{ comment.id }}">
+								<button type="button" class="btn btn-danger mt-3">Supprimer</button>
+							</a>
+						</div>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
